@@ -63,18 +63,33 @@ class Learn(Scene):
         # self.play(Rotating(square),FadeIn(circle))
         # self.play(GrowArrow(arrow))
         # self.play(GrowFromCenter(rectangle), GrowFromCenter(ellipse), GrowFromCenter(ring))
+        print("Some Parameters:")
+        print("FRAME_HEIGHT ",FRAME_HEIGHT)
+        print("FRAME_WIDTH ",FRAME_WIDTH)
 
         square1 = Square(fill_color=RED, fill_opacity=1, color=GOLD_A)
         square2 = Square(fill_color=YELLOW, fill_opacity=1, color=GOLD_A)
         square3 = Square(fill_color=GREEN, fill_opacity=1, color=GOLD_A)
         square4 = Square(fill_color=BLUE, fill_opacity=1, color=GOLD_A)
-        square1.move_to([-2,0,1])
-        square2.move_to([-1,0,2])
-        square3.move_to([0,0,0])
-        square4.move_to([1,0,-1])
+        text1 = TextMobject("Windows 20") # 默认配置的MiKTeX是不支持中文的
+        text2 = TextMobject("MacOS 30")
+        text3 = TextMobject("Ubuntu 40")
+
+
+        square1.move_to([-1,1,1])
+        square2.move_to([1,1,2])
+        square3.move_to([-1,-1,0])
+        square4.move_to([1,-1,-1])
+        text1.move_to([0,-2.5,0])
+        text2.next_to(text1,DOWN)
+        text3.next_to(text2,DOWN)
 
         self.play(GrowFromCenter(square1), GrowFromCenter(square2), GrowFromCenter(square3), GrowFromCenter(square4))
-        
+        self.play(GrowFromCenter(text1))
+        self.play(Transform(text1,text2)) # 这个时候，text2 变成了 text1       
+        self.play(Transform(text1,text3)) # 这个时候，text1 是原来的text2
+         
+
 
         self.wait()
 
